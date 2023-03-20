@@ -9,7 +9,8 @@ namespace SalesWebMvc
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<SalesWebMvcContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("SalesWebMvcContext") ?? throw new InvalidOperationException("Connection string 'SalesWebMvcContext' not found.")));
+                options.UseMySql(builder.Configuration.GetConnectionString("SalesWebMvcContext") ?? throw new InvalidOperationException("Connection string 'SalesWebMvcContext' not found."),
+                    new MySqlServerVersion(new Version(8, 0, 32))));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
